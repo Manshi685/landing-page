@@ -1,0 +1,22 @@
+import csv
+
+def txt_to_csv(input_file, output_file):
+    with open(input_file, 'r') as txt_file:
+        lines = txt_file.readlines()
+
+    with open(output_file, 'w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        for line in lines:
+            writer.writerow([line.strip()])
+
+if __name__ == "__main__":
+    input_file_path = "input.txt"
+    output_file_path = "output.csv"
+
+    try:
+        txt_to_csv(input_file_path, output_file_path)
+        print("Conversion successful!")
+    except FileNotFoundError:
+        print("File not found. Please check the file path.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
